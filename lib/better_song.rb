@@ -15,12 +15,10 @@ class Song
         @genre = genre
 
         @@genre_ct[genre.to_sym] += 1
-        #@@genres = chg_hash_keys_to_sym(@@genre_ct)
-        @@genres << genre
+        @@genres = chg_hash_keys_to_sym(@@genre_ct)
 
         @@artist_ct[artist.to_sym] += 1
-        #@@artists = chg_hash_keys_to_sym(@@artist_ct)
-        @@artists << artist
+        @@artists = chg_hash_keys_to_sym(@@artist_ct)
 
         @@count += 1
         @@all << self
@@ -36,25 +34,29 @@ class Song
         @@count
     end
 
+    def self.xartist_ct
+        @@artist_ct
+    end
     # regurn e.g. ["Jay-Z", "Drake", "Beyonce"]
     def self.artist_count
         @@artist_ct.collect{|k,v| [k.to_s, v]}.to_h
-        @@artists.tally
     end
 
     def self.artists
-        @@artists.uniq
+        @@artists
     end
 
+    def self.xgenre_ct
+        @@genre_ct
+    end
     # return e.g. {"rap" => 5, "rock" => 1, "country" => 3}
     def self.genre_count
         @@genre_ct.collect{|k,v| [k.to_s, v]}.to_h
-        @@genres.tally
     end
 
     # return e.g. ["Rap", "Pop"]
     def self.genres
-        @@genres.uniq
+        @@genres
     end
 
     private
